@@ -110,7 +110,7 @@ class _detailsPageState extends State<detailsPage>{
                                 ),
                                    
                         Positioned(
-                          top: 420,
+                          top: 0,
                           right: 0,
                           child: IconButton(
                             icon: const Icon(Icons.favorite,color:Color.fromARGB(199, 255, 0, 72), size: 70),
