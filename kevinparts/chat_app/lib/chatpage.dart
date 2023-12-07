@@ -1,32 +1,36 @@
+import 'package:chat_app/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
 import 'message.dart';
 
-class chatpage extends StatefulWidget {
+class ChatPage extends StatefulWidget {
   String email;
-  chatpage({required this.email});
+
+  // Constructor for receiving the email
+  ChatPage({required this.email});
+
   @override
-  _chatpageState createState() => _chatpageState(email: email);
+  _ChatPageState createState() => _ChatPageState(email: email);
 }
 
-class _chatpageState extends State<chatpage> {
+class _ChatPageState extends State<ChatPage> {
   String email;
-  _chatpageState({required this.email});
 
-  final fs = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
-  final TextEditingController message = new TextEditingController();
+  // Constructor for initializing the email
+  _ChatPageState({required this.email});
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'data',
-        ),
+        title: Text('Chat App'),
         actions: [
+          // Button for signing out
           MaterialButton(
             onPressed: () {
               _auth.signOut().whenComplete(() {
@@ -38,9 +42,7 @@ class _chatpageState extends State<chatpage> {
                 );
               });
             },
-            child: Text(
-              "signOut",
-            ),
+            child: Text("Sign Out"),
           ),
         ],
       ),
@@ -49,49 +51,45 @@ class _chatpageState extends State<chatpage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Widget for displaying messages
             Container(
               height: MediaQuery.of(context).size.height * 0.79,
-              child: messages(
-                email: email,
-              ),
+              child: messages(email: email),
             ),
+            // Input field for typing messages
             Row(
               children: [
                 Expanded(
                   child: TextFormField(
-                    controller: message,
+                    controller: messageController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.purple[100],
-                      hintText: 'message',
-                      enabled: true,
+                      fillColor: Colors.red[100],
+                      hintText: 'Type a message',
                       contentPadding: const EdgeInsets.only(
                           left: 14.0, bottom: 8.0, top: 8.0),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: new BorderSide(color: Colors.purple),
-                        borderRadius: new BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: new BorderSide(color: Colors.purple),
-                        borderRadius: new BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    validator: (value) {},
-                    onSaved: (value) {
-                      message.text = value!;
-                    },
                   ),
                 ),
+                // Button for sending messages
                 IconButton(
                   onPressed: () {
-                    if (message.text.isNotEmpty) {
-                      fs.collection('Messages').doc().set({
-                        'message': message.text.trim(),
+                    if (messageController.text.isNotEmpty) {
+                      _firestore.collection('Messages').doc().set({
+                        'message': messageController.text.trim(),
                         'time': DateTime.now(),
                         'email': email,
                       });
 
-                      message.clear();
+                      messageController.clear();
                     }
                   },
                   icon: Icon(Icons.send_sharp),

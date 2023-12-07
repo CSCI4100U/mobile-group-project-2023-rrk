@@ -52,7 +52,7 @@ class _messagesState extends State<messages> {
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
-                          color: Colors.purple,
+                          color: Colors.red,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
