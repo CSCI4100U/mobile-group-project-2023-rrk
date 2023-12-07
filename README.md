@@ -3,7 +3,7 @@
 
 Group members (3-5) (no Student IDs, only names and github usernames):
 
-1. Roman Ahmad Zeia (roman-ahmadzeia)
+1. Roman Ahmad Zeia [roman-ahmadzeia](https://github.com/roman-ahmadzeia)
 
 2. Kevin Waran
 
