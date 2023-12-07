@@ -7,15 +7,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:autoplusapp/pages/user_pages/detailsPageOwner.dart';
 
-class userProfilePage extends StatefulWidget{ // Made By Roman
+class favoritesPage extends StatefulWidget{ // Ryan
 
-  const userProfilePage ({Key? key}): super(key: key);
+  const favoritesPage ({Key? key}): super(key: key);
 
   @override
-  State<userProfilePage> createState() => _userProfilePage();
+  State<favoritesPage> createState() => _favoritesPage();
 }
 
-class _userProfilePage extends State<userProfilePage>{
+class _favoritesPage extends State<favoritesPage>{
 
   @override
   void initState(){
@@ -70,14 +70,18 @@ Future<String> getImageUrl(imageUrl) async { // Ro
         Center(child: Text(user_name.isNotEmpty ? user_name : '',
          style:GoogleFonts.roboto(fontSize: 30) ,),),
 
-         Row(children: [SizedBox(width: MediaQuery.of(context).size.width * 0.03),Text("My Posts", style: GoogleFonts.nunito(fontSize: 25))],),
+         Row(children: [SizedBox(width: MediaQuery.of(context).size.width * 0.03),Text("My Favorites", style: GoogleFonts.nunito(fontSize: 25))],),
 
         Expanded(
           flex: 8,
           child: Padding(
             padding: const EdgeInsets.only(left:10, top:10, right:10, bottom:50),
             child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection('posts').where('owner_info',isEqualTo: user!.email) .snapshots(),
+              stream:  FirebaseFirestore.instance.collection('favorites')
+      .doc(user!.email)  // Assuming the document ID is the user's email
+      .collection('user_favorites')
+      .snapshots(),
+
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                    if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator(color: Colors.red));

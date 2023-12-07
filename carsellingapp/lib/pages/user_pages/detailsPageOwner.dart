@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:autoplusapp/statecontrollers/authtree.dart';
 
-class detailsPageOwner extends StatefulWidget{
+class detailsPageOwner extends StatefulWidget{ // Roman
   final String vehicle_image, vehicle_name, vehicle_description, owner_info; 
   final String vehicle_price, vehicle_owner;
 

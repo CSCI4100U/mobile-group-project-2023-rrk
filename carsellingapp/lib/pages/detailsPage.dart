@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:autoplusapp/database/authentication.dart';
@@ -5,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:autoplusapp/statecontrollers/authtree.dart';
 
-class detailsPage extends StatefulWidget{
+class detailsPage extends StatefulWidget{ // Made By Roman
   final String vehicle_image, vehicle_name, vehicle_description, owner_info; 
   final String vehicle_price, vehicle_owner;
 
@@ -26,6 +27,42 @@ class _detailsPageState extends State<detailsPage>{
    return await ref.getDownloadURL();
   }
 
+  Future<void> favoritePost(vehicle_name, vehicle_cost, vehicle_desc, vehicle_owner, owner_info,vehicle_image) async {
+
+      try {
+    CollectionReference favoritesCollection = FirebaseFirestore.instance.collection('favorites');
+
+    DocumentReference userFavoritesDocRef = await favoritesCollection
+        .doc(user!.email) 
+        .collection('user_favorites')
+        .add({
+      'vehicle_name': vehicle_name,
+      'vehicle_cost': vehicle_cost,
+      'vehicle_desc': vehicle_desc,
+      'vehicle_owner': vehicle_owner,
+      'owner_info': owner_info,
+      'vehicle_image':vehicle_image,
+      // Add other fields as needed
+    });
+
+    print('Document added with ID: ${userFavoritesDocRef.id}');
+  } catch (e) {
+    print('Error adding document to favorites: $e');
+  }
+
+
+
+  }
+
+  // Future<void> sendToDB(vehicleName, vehicleDesc, vehicleCost, ownerInfo, vehicleOwner, vehicleImage) async{
+  //    await FirebaseFirestore.instance.collection('posts').add({
+  //   'vehicle_image': vehicleImage,
+  //   'vehicle_name' :vehicleName,
+  //   'vehicle_cost' :vehicleCost,
+  //   'vehicle_desc' :vehicleDesc,
+  //   'vehicle_owner': vehicleOwner,
+  //   'owner_info': ownerInfo,
+  // });
   
 
 
@@ -47,26 +84,43 @@ class _detailsPageState extends State<detailsPage>{
             
     
            })],),
-          SizedBox(child: ClipRRect(
-            borderRadius:BorderRadius.circular(20),
-            child: FutureBuilder<String>(
-                                future: getImageUrl(widget.vehicle_image),
-                                builder: (context, snapshot) {
-                                   if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return const Center(child: CircularProgressIndicator(color: Colors.red));
-                                   }
-                                  if (snapshot.connectionState == ConnectionState.done) {
-                                    return snapshot.hasError
-                                        ? const Icon(Icons.error)
-                                        : Image.network(
-                                            snapshot.data!,
-                                            fit: BoxFit.cover,
-                                          );
-                                  } else {
-                                    return const Placeholder();
-                                  }
-                                },
-                              ),)),
+          Stack(
+            children: [ SizedBox(child: ClipRRect(
+              borderRadius:BorderRadius.circular(20),
+              child: FutureBuilder<String>(
+                                  future: getImageUrl(widget.vehicle_image),
+                                  builder: (context, snapshot) {
+                                     if (snapshot.connectionState == ConnectionState.waiting) {
+                                    return const Center(child: CircularProgressIndicator(color: Colors.red));
+                                     }
+                                    if (snapshot.connectionState == ConnectionState.done) {
+                                      return snapshot.hasError
+                                          ? const Icon(Icons.error)
+                                          : Image.network(
+                                              snapshot.data!,
+                                              fit: BoxFit.cover,
+                                            );
+                                    } else {
+                                      return const Placeholder();
+                                      
+                                    }
+                                  },
+                                  
+                                ),)
+                                ),
+                                   
+                        Positioned(
+                          top: 420,
+                          right: 0,
+                          child: IconButton(
+                            icon: const Icon(Icons.favorite,color:Color.fromARGB(199, 255, 0, 72), size: 70),
+                            onPressed: () async{
+                             await favoritePost(widget.vehicle_name, widget.vehicle_price, widget.vehicle_description, widget.vehicle_owner,widget.owner_info,widget.vehicle_image);
+                            },
+                          ),
+                        ),
+                    ],
+          ),
     
           SizedBox(child: Container(child: Column(children: [
             

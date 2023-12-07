@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:autoplusapp/pages/homePage.dart';
 import 'package:autoplusapp/pages/user_pages/userProfilePage.dart';
-
-class navigationBar extends StatefulWidget{
+import 'package:autoplusapp/pages/helpPage.dart';
+import 'package:autoplusapp/pages/user_pages/favoritesPage.dart';
+class navigationBar extends StatefulWidget{ // Made By Roman
   const navigationBar({Key? key}) : super (key:key);
 
   @override
@@ -25,6 +26,9 @@ class _navigationBar extends State<navigationBar>{
     const homePage(),
     const newAdPage(),
     const userProfilePage(),
+    const favoritesPage(),
+    HelpPage(),
+
   ];
 
   @override
@@ -41,7 +45,9 @@ class _navigationBar extends State<navigationBar>{
         FaIcon(FontAwesomeIcons.house, color: Colors.white),
         FaIcon(FontAwesomeIcons.pencil, color: Colors.white),
         FaIcon(FontAwesomeIcons.user, color: Colors.white),
-        // FaIcon(FontAwesomeIcons.circleInfo, color: Colors.white)
+        FaIcon(FontAwesomeIcons.heart, color: Colors.white),
+        FaIcon(FontAwesomeIcons.circleInfo, color: Colors.white),
+
 
       ]),
     );

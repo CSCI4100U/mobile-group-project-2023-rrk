@@ -1,26 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:autoplusapp/statecontrollers/authtree.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Onboarding Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: const OnboardingPage(),
-    );
-  }
-}
-
-class OnboardingPage extends StatefulWidget {
+class OnboardingPage extends StatefulWidget { // Made By Kevin
   const OnboardingPage({Key? key}) : super(key: key);
 
   @override
@@ -98,7 +82,7 @@ class OnboardScreen1 extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16),
-          Text('Welcome to AUTO+, your one-stop shop for buying and selling vehicles.'),
+          Text('Welcome to AUTO+, your one-stop shop for buying and selling vehicles.', style: GoogleFonts.nunito()),
           SizedBox(height: 16),
           ElevatedButton(
             onPressed: onNext,
@@ -138,8 +122,8 @@ class OnboardScreen2 extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color:Colors.red),
                 ),
                 SizedBox(height: 16),
-                Image.asset(
-                  'images/buy.png',
+                Image.asset('assets/images/buy.png'
+                  ,
                   width: 200, // Adjust the width as needed
                   height: 200, // Adjust the height as needed
                 ),
@@ -147,18 +131,23 @@ class OnboardScreen2 extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16),
-          Text('Browse our extensive collection of vehicles and find the perfect one for you.'),
+          Text('Browse our extensive collection of vehicles and find the perfect one for you.', style: GoogleFonts.nunito()),
           SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
-                onPressed: onSkip,
-                child: Text('Skip'),
+                onPressed:(){
+                  Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const authTree()),
+                );
+                } ,
+                child: Text('Skip', style: GoogleFonts.nunito()),
               ),
               ElevatedButton(
                 onPressed: onNext,
-                child: Text('Next'),
+                child: Text('Next', style: GoogleFonts.nunito()),
               ),
             ],
           ),
@@ -189,29 +178,39 @@ class OnboardScreen3 extends StatelessWidget {
           Center(
             child: Text(
               'SELL',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color:Colors.red),
+              style: GoogleFonts.nunito(fontSize: 24, fontWeight: FontWeight.bold, color:Colors.red),
             ),
           ),
           SizedBox(height: 16),
           Image.asset(
-            'images/sale-dealer.png',
+            'assets/images/sale-dealer.png',
             width: 200, // Adjust the width as needed
             height: 200, // Adjust the height as needed
           ),
-          Text('Ready to sell your vehicle? List it on AUTO+ and connect with potential buyers.'),
+          Text('Ready to sell your vehicle? List it on AUTO+ and connect with potential buyers.', style: GoogleFonts.nunito()),
           SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
-                onPressed: onGotIt,
-                child: Text('Got it'),
+                onPressed: 
+                (){
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const authTree()),
+                );
+                },
+                child: Text('Got it', style: GoogleFonts.nunito()),
               ),
               ElevatedButton(
                 onPressed: () {
+                  Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const authTree()),
+                );
                   // Handle login action
                 },
-                child: Text('Login'),
+                child: Text('Login', style: GoogleFonts.nunito()),
               ),
             ],
           ),
