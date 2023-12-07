@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCnzUeOK6LxuRme632rfWct_smFB6Q2LCo',
-    appId: '1:900613752308:android:6a8b145f11cb517f0de5a1',
-    messagingSenderId: '900613752308',
-    projectId: 'autoplusdevelopment',
-    storageBucket: 'autoplusdevelopment.appspot.com',
+    apiKey: 'AIzaSyAEkbaIhkQ2nvR6OL9hUrPQknPzWSXtPB8',
+    appId: '1:675451937138:android:cf13d7e73b2f5680e3bdeb',
+    messagingSenderId: '675451937138',
+    projectId: 'autopluscarsellingapp',
+    storageBucket: 'autopluscarsellingapp.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAvm6M4NV-bmLjzIpdYVZzJpK8hYgVHLSk',
-    appId: '1:900613752308:ios:24420ac62daba1e70de5a1',
-    messagingSenderId: '900613752308',
-    projectId: 'autoplusdevelopment',
-    storageBucket: 'autoplusdevelopment.appspot.com',
+    apiKey: 'AIzaSyC49ZI7fgEWV0rjebrEK2t4NZitMIOEf1w',
+    appId: '1:675451937138:ios:bd550471d13cfb35e3bdeb',
+    messagingSenderId: '675451937138',
+    projectId: 'autopluscarsellingapp',
+    storageBucket: 'autopluscarsellingapp.appspot.com',
     iosBundleId: 'com.example.carsellingapp',
   );
 }

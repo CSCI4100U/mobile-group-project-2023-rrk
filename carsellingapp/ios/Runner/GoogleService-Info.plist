@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAvm6M4NV-bmLjzIpdYVZzJpK8hYgVHLSk</string>
+	<string>AIzaSyC49ZI7fgEWV0rjebrEK2t4NZitMIOEf1w</string>
 	<key>GCM_SENDER_ID</key>
-	<string>900613752308</string>
+	<string>675451937138</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.carsellingapp</string>
 	<key>PROJECT_ID</key>
-	<string>autoplusdevelopment</string>
+	<string>autopluscarsellingapp</string>
 	<key>STORAGE_BUCKET</key>
-	<string>autoplusdevelopment.appspot.com</string>
+	<string>autopluscarsellingapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:900613752308:ios:24420ac62daba1e70de5a1</string>
+	<string>1:675451937138:ios:bd550471d13cfb35e3bdeb</string>
 </dict>
 </plist>
