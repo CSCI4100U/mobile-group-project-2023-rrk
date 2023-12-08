@@ -25,7 +25,7 @@ Auto Plus is a car marketplace app that connects buyers and sellers, making the 
 ### Prerequisites 💻
 
 - A IDE Or Compiler (VsCode, Android Studio, etc)
-- Flutter & Dark SDK
+- Flutter & Dart SDK
 - Gradle
 
 # Installation ⬇️
